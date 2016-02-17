@@ -1,0 +1,7 @@
+jupyter
+librosa
+numpy
+scikits.samplerate
+scipy
+sklearn
+tqdm
