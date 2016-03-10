@@ -1,5 +1,12 @@
 input/
 output/
+tsne/
+
+*.mp3
+
+*.pkl
+*.npy
+*.pyc
 
 .*
 !.gitignore
