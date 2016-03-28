@@ -42,11 +42,15 @@ def ffmpeg_load_audio(filename, sr=44100, mono=False, normalize=True, in_type=np
             else:
                 break
     audio = np.fromstring(raw, dtype=in_type).astype(out_type)
-    if issubclass(out_type, np.floating):
-        if normalize:
-            audio /= np.abs(audio).max()
-        elif issubclass(in_type, np.integer):
-            audio /= np.iinfo(in_type).max
     if channels > 1:
         audio = audio.reshape((-1, channels)).transpose()
+    if audio.size == 0:
+        return audio, sr
+    if issubclass(out_type, np.floating):
+        if normalize:
+            peak = np.abs(audio).max()
+            if peak > 0:
+                audio /= peak
+        elif issubclass(in_type, np.integer):
+            audio /= np.iinfo(in_type).max
     return audio, sr
