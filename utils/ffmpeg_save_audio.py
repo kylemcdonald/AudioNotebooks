@@ -19,7 +19,7 @@ def ffmpeg_save_audio(filename, y, sr=44100):
         '-i', '-', # means that the input will arrive from the pipe
         '-vn', # means 'don't expect any video input'
         filename],
-        stdin=sp.PIPE, stdout=DEVNULL, stderr=DEVNULL, bufsize=4096)
+        stdin=sp.PIPE, stdout=DEVNULL, stderr=DEVNULL, bufsize=4096, close_fds=True)
     y16 = (y * np.iinfo(np.int16).max).astype(np.int16)
     pipe.stdin.write(y16.tostring())
     pipe.stdin.close()

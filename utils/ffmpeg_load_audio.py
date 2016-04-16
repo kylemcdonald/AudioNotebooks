@@ -29,7 +29,7 @@ def ffmpeg_load_audio(filename, sr=44100, mono=False, normalize=True, in_type=np
         '-ar', str(sr),
         '-ac', str(channels),
         '-']
-    p = sp.Popen(command, stdout=sp.PIPE, stderr=DEVNULL, bufsize=4096)
+    p = sp.Popen(command, stdout=sp.PIPE, stderr=DEVNULL, bufsize=4096, close_fds=True)
     bytes_per_sample = np.dtype(in_type).itemsize
     frame_size = bytes_per_sample * channels
     chunk_size = frame_size * sr # read in 1-second chunks
