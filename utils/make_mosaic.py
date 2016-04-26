@@ -16,6 +16,10 @@ def make_mosaic(images, n=None, nx=None, ny=None, w=None, h=None):
     image_gen = iter(images)
     mosaic = np.empty((h*ny, w*nx))
     for i in range(ny):
+        ia = (i)*h
+        ib = (i+1)*h
         for j in range(nx):
-            mosaic[(nx-i-1)*w:(nx-i)*w, j*h:(j+1)*h] = next(image_gen)
+            ja = j*w
+            jb = (j+1)*w
+            mosaic[ia:ib, ja:jb] = next(image_gen)
     return mosaic
