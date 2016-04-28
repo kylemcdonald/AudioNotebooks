@@ -14,7 +14,7 @@ def ffmpeg_save_audio(filename, y, sr=44100):
         '-y', # (optional) means overwrite the output file if it already exists.
         '-f', 's16le', # means 16bit input
         '-acodec', 'pcm_s16le', # means raw 16bit input
-        '-r', str(sr), # the input will have 44100 Hz
+        '-ar', str(sr), # the input will have 44100 Hz
         '-ac','1', # the input will have 1 channels (mono)
         '-i', '-', # means that the input will arrive from the pipe
         '-vn', # means 'don't expect any video input'
