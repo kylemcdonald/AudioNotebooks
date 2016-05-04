@@ -22,6 +22,7 @@ Some common formats:
 ### Producing a t-SNE embedding for a collection of one-shot sounds
 
 1. Run `Collect Samples`.
+2. Run `Samples to Fingerprints`.
 
 ## Setup
 
