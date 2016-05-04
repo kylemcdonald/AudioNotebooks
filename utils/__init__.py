@@ -5,3 +5,4 @@ from show_array import show_array
 from make_mosaic import make_mosaic
 from bhtsne import bh_tsne
 from normalize import normalize
+from mkdir_p import mkdir_p
