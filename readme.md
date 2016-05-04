@@ -1,14 +1,16 @@
-# AudioNotebooks
+# Audio Notebooks
 
 A collection of Jupyter Notebooks related to audio processing.
 
 The notebooks act like interactive utility scripts for converting between different representations, usually stored in `data/project/` where `project` is the dataset you're working with. Generally, if you change `data_root` near the top of the notebook and run the reset of the notebook, it will do something useful.
 
-* _Multisamples_ refers to audio that needs to be segmented into samples.
+Here are some words used in the names of the notebooks, and what they mean:
+
 * _Samples_ refers to one-shot sounds, usually less than 1-2 seconds long. These can be loaded from a directory, like `data/project/samples/` or from a precomputed numpy matrix like `data/project/samples.npy`. When they are stored in a `.npy` file, all the samples are necessarily concatenated or expanded to be the same length.
+* _Multisamples_ refers to audio that needs to be segmented into samples.
 * _Fingerprints_ refer to small images, usually 32x32 pixels, representing a small chunk of time like 250ms or 500ms. These are either calculated with CQT, STFT, or another frequency domain analysis technique. They are useful for running t-SNE or training neural nets.
 
-Some common formats:
+Some formats in use:
 
 * `.npy` are numpy matrices. Numpy can load and save these very quickly, even for large datasets.
 * `.tsv` are tab separated files referring to one sample per line, usally with normalized numbers in each column. These are good for loading into openFrameworks apps, or into the browser.
@@ -17,12 +19,27 @@ Some common formats:
 * `.h5` is the way the Keras saves the weights for a neural net.
 * `.json` is good for taking what would usually go into a Pickle file, and saving it in a format that can be loaded onto the web. It's also one of the formats used by Keras, part of a saved model.
 
-## Common Tasks
+## Example Workflow
 
-### Producing a t-SNE embedding for a collection of one-shot sounds
+### Producing a t-SNE embedding for samples
 
-1. Run `Collect Samples`.
-2. Run `Samples to Fingerprints`.
+1. Collect Samples
+2. Samples to Fingerprints
+3. Fingerprints to t-SNE
+
+### Producing a t-SNE grid embedding of fingerprints for samples
+
+By virtue of creating a rectangular grid, you may lose some points. This technique will only work on 10-20k points maximum
+
+1. Collect Samples
+2. Samples to Fingerprints
+3. Fingerprints to t-SNE
+4. Run the `example-data` app from [ofxAssignment](https://github.com/kylemcdonald/ofxAssignment/) or use [CloudToGrid](https://github.com/kylemcdonald/CloudToGrid/) to convert a 2d t-SNE embedding to a grid embedding.
+5. Fingerprints to Spritesheet
+
+If you only want a spritesheet without any sorting, skip step 4 and only run step 5 partially.
+
+### Predict Tags from Labeled Audio
 
 ## Setup
 
