@@ -9,6 +9,7 @@ Here are some words used in the names of the notebooks, and what they mean:
 * _Samples_ refers to one-shot sounds, usually less than 1-2 seconds long. These can be loaded from a directory, like `data/project/samples/` or from a precomputed numpy matrix like `data/project/samples.npy`. When they are stored in a `.npy` file, all the samples are necessarily concatenated or expanded to be the same length.
 * _Multisamples_ refers to audio that needs to be segmented into samples.
 * _Fingerprints_ refer to small images, usually 32x32 pixels, representing a small chunk of time like 250ms or 500ms. These are either calculated with CQT, STFT, or another frequency domain analysis technique. They are useful for running t-SNE or training neural nets.
+* _Spritesheets_ are single files with multiple sounds, either visually as fingerprints or sonically as a sequence of sounds, organized carefully so they can be chopped up again later.
 
 Some formats in use:
 
@@ -21,13 +22,18 @@ Some formats in use:
 
 ## Example Workflow
 
-### Producing a t-SNE embedding for samples
+### Audio spritesheet
+
+1. Collect Samples
+2. Samples to Audio Spritesheet
+
+### t-SNE embedding for samples
 
 1. Collect Samples
 2. Samples to Fingerprints
 3. Fingerprints to t-SNE
 
-### Producing a t-SNE grid embedding of fingerprints for samples
+### t-SNE grid fingerprints spritesheet
 
 By virtue of creating a rectangular grid, you may lose some points. This technique will only work on 10-20k points maximum
 
@@ -39,7 +45,7 @@ By virtue of creating a rectangular grid, you may lose some points. This techniq
 
 If you only want a spritesheet without any sorting, skip step 4 and only run step 5 partially.
 
-### Predict Tags from Labeled Audio
+### Predict tags given tagged audio
 
 ## Setup
 
