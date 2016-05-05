@@ -1,10 +1,6 @@
 data/
-tsne/
+failed/
 
-*.mp3
-
-*.pkl
-*.npy
 *.pyc
 
 .*

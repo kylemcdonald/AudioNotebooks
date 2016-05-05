@@ -47,6 +47,9 @@ If you only want a spritesheet without any sorting, skip step 4 and only run ste
 
 ### Predict tags given tagged audio
 
+1. Collect Samples
+2. Collect Metadata
+
 ## Setup
 
 [librosa](https://github.com/bmcfee/librosa) needs some extra help on OS X, make sure to follow the instructions [here](https://github.com/bmcfee/librosa#hints-for-os-x) first. Loading and saving audio uses ffmpeg.
