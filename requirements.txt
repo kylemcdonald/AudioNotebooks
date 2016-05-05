@@ -3,7 +3,7 @@ librosa
 numpy
 scikits.samplerate
 skimage
+sklearn
 matplotlib
 scipy
-sklearn
 tqdm
