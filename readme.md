@@ -48,7 +48,10 @@ If you only want a spritesheet without any sorting, skip step 4 and only run ste
 ### Predict tags given tagged audio
 
 1. Collect Samples
-2. Collect Metadata
+2. Samples to Fingerprints
+3. Collect Metadata
+4. Metadata to Labels
+5. Fingerprints and Labels to Classifier
 
 ## Setup
 
