@@ -1,5 +1,6 @@
 data/
 failed/
+inprogress/
 
 *.pyc
 
