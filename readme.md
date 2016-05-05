@@ -4,6 +4,20 @@ A collection of Jupyter Notebooks related to audio processing.
 
 The notebooks act like interactive utility scripts for converting between different representations, usually stored in `data/project/` where `project` is the dataset you're working with. Generally, if you change `data_root` near the top of the notebook and run the reset of the notebook, it will do something useful.
 
+## Setup
+
+[librosa](https://github.com/bmcfee/librosa) currently needs some extra help on OS X, make sure to follow the instructions [here](https://github.com/bmcfee/librosa#hints-for-os-x) first.
+
+```
+$ brew install ffmpeg # for loading and saving audio
+$ git clone https://github.com/kylemcdonald/AudioNotebooks.git
+$ cd AudioNotebooks.git
+$ pip install -r requirements.txt
+$ jupyter notebook
+```
+
+## Terminology
+
 Here are some words used in the names of the notebooks, and what they mean:
 
 * _Samples_ refers to one-shot sounds, usually less than 1-2 seconds long. These can be loaded from a directory, like `data/project/samples/` or from a precomputed numpy matrix like `data/project/samples.npy`. When they are stored in a `.npy` file, all the samples are necessarily concatenated or expanded to be the same length.
@@ -20,7 +34,7 @@ Some formats in use:
 * `.h5` is the way the Keras saves the weights for a neural net.
 * `.json` is good for taking what would usually go into a Pickle file, and saving it in a format that can be loaded onto the web. It's also one of the formats used by Keras, part of a saved model.
 
-## Example Workflow
+## Example Workflows
 
 ### Audio spritesheet
 
@@ -31,21 +45,31 @@ Some formats in use:
 
 1. Collect Samples
 2. Samples to Fingerprints
-3. Fingerprints to t-SNE
+3. Fingerprints to t-SNE (with `mode = "fingerprints"`)
+
+The standard workflow is to create a t-SNE embedding from fingerprints, but it's also possible to create an embedding after learning a classifier:
+
+1. Collect Samples
+2. Samples to Fingerprints
+3. Collect Metadata
+4. Metadata to Labels
+5. Fingerprints and Labels to Classifier
+6. Fingerprints to t-SNE (with `mode = "combined"`)
 
 ### t-SNE embedding for phonemes
 
 Right this only really works with extracting phonemes from transcribed speech, using [Gentle](https://lowerquality.com/gentle/).
 
-1. Gentle to Samples
+1. Gentle to Samples (with `save_wav = True`)
 2. Samples to Fingerprints
 3. Fingerprints to t-SNE
 
-It's also possible to use Sphinx, but it can be very significantly slower:
+It's also possible to use Sphinx for speech that does not have transcriptions, but it can be very significantly slower:
 
 1. Sphinx to Samples
-2. Samples to Fingerprints
-3. Fingerprints to t-SNE
+2. Collect Samples
+3. Samples to Fingerprints
+4. Fingerprints to t-SNE
 
 ### t-SNE grid fingerprints spritesheet
 
@@ -66,14 +90,3 @@ If you only want a spritesheet without any sorting, skip step 4 and only run ste
 3. Collect Metadata
 4. Metadata to Labels
 5. Fingerprints and Labels to Classifier
-
-## Setup
-
-[librosa](https://github.com/bmcfee/librosa) needs some extra help on OS X, make sure to follow the instructions [here](https://github.com/bmcfee/librosa#hints-for-os-x) first. Loading and saving audio uses ffmpeg.
-
-```
-$ git clone https://github.com/kylemcdonald/AudioNotebooks.git
-$ cd AudioNotebooks.git
-$ pip install -r requirements.txt
-$ jupyter notebook
-```
