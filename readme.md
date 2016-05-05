@@ -33,6 +33,20 @@ Some formats in use:
 2. Samples to Fingerprints
 3. Fingerprints to t-SNE
 
+### t-SNE embedding for phonemes
+
+Right this only really works with extracting phonemes from transcribed speech, using [Gentle](https://lowerquality.com/gentle/).
+
+1. Gentle to Samples
+2. Samples to Fingerprints
+3. Fingerprints to t-SNE
+
+It's also possible to use Sphinx, but it can be very significantly slower:
+
+1. Sphinx to Samples
+2. Samples to Fingerprints
+3. Fingerprints to t-SNE
+
 ### t-SNE grid fingerprints spritesheet
 
 By virtue of creating a rectangular grid, you may lose some points. This technique will only work on 10-20k points maximum
