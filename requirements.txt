@@ -2,8 +2,8 @@ jupyter
 librosa
 numpy
 scikits.samplerate
-skimage
-sklearn
+scikit-image
+scikit-learn
 matplotlib
 scipy
 tqdm
